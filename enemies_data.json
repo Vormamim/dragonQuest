@@ -1,0 +1,58 @@
+[
+    {
+    "name": "Bulbasaur",
+    "hit_points": 10,
+    "enemy_location": "forest",
+    "attack_phrases": [
+        "The Bulbasaur lunges forward with its weapon.",
+        "The Bulbasaur growls and attacks you.",
+        "The Bulbasaur swings its weapon wildly at you."
+    ],
+    "defend_phrases": [
+        "The Bulbasaur raises its shield to protect itself.",
+        "The Bulbasaur ducks and weaves to avoid your attack.",
+        "The Bulbasaur jumps back to create some distance."
+    ]
+    },
+
+    {
+    "name": "Rick Astley",
+    "hit_points": 15,
+    "enemy_location": "village",
+    "attack_phrases": [
+        "Never gonna give you up!",
+        "Never gonna let you down!",
+        "Never gonna run around and desert you!",
+        "Never gonna make you cry!",
+        "Never gonna say goodbye!"
+    ],
+    "defend_phrases": [
+        "Don't stop believin'!",
+        "Gonna give you up!",
+        "Gonna run around and desert you!",
+        "Gonna make you cry!",
+        "Gonna say goodbye!"
+    ]
+    },
+    {
+    "name": "Maths Teacher",
+    "hit_points": 20,
+    "enemy_location": "summit",
+    "attack_phrases": [
+        "Calculating the equation of the line of attack...",
+        "Solving for x in the equation of destruction...",
+        "Applying the Pythagorean theorem to deliver a crushing blow...",
+        "Using geometry to geometric mean a devastating attack...",
+        "Using trigonometry to calculate the angles of attack..."
+      ],
+      "defend_phrases": [
+        "Quickly solving for the slope of the defense line...",
+        "Using algebra to find the intercept of the defense...",
+        "Using calculus to optimize the defense strategy...",
+        "Applying the rules of logarithms to fortify the defense...",
+        "Using the principles of graph theory to map out the best defense strategy..."
+        ]
+    }
+ ]
+
+    

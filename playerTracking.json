@@ -1,0 +1,40 @@
+{
+    "player": {
+      "name": "Dirk The Daring",
+      "health": 100,
+      "inventory": []
+    },
+    "locations": {
+      "forest": {
+        "description": "You are in a dense forest. There are tall trees all around you and a faint path leading north.",
+        "visited": false,
+        "exits": {
+          "north": "mountain",
+          "south": "village"
+        }
+      },
+      "mountain": {
+        "description": "You are at the base of a tall mountain. There is a rocky path that leads up to the summit.",
+        "visited": false,
+        "exits": {
+          "up": "summit",
+          "south": "forest"
+        }
+      },
+      "summit": {
+        "description": "You are at the summit of the mountain. The view is breathtaking and you can see for miles in all directions.",
+        "visited": false,
+        "exits": {
+          "down": "mountain"
+        }
+      },
+      "village": {
+        "description": "You are in a small village. There are a few houses and a well in the center of the village.",
+        "visited": false,
+        "exits": {
+          "north": "forest"
+        }
+      }
+    }
+  }
+  

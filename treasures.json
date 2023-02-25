@@ -1,0 +1,25 @@
+
+{
+    "treasures": [
+        {
+            "name": "Golden Coin",
+            "location": "village",
+            "value": 100
+        },
+        {
+            "name": "Silver Ring",
+            "location": "forest",
+            "value": 50
+        },
+        {
+            "name": "Diamond Necklace",
+            "location": "Mountain",
+            "value": 250
+        },
+        {
+            "name": "broken chair",
+            "location": "Mountain",
+            "value": 0
+        }
+    ]
+}

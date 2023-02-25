@@ -1,0 +1,26 @@
+{
+    "attack_phrases": [
+    "You strike a powerful blow!",
+    "Your opponent cringes in pain!",
+    "You leap into the air and deliver a crushing blow!",
+    "You unleash a barrage of attacks!",
+    "Your opponent is badly wounded!",
+    "You dodge your opponent's attack and counter with a quick strike!",
+    "You unleash a powerful finishing move!",
+    "Your opponent falls to the ground, defeated!",
+    "You land a critical hit!",
+    "You masterfully parry your opponent's attack!"
+    ],
+    "defend_phrases": [
+    "You defend against the enemy's attack!",
+    "You brace yourself for the enemy's strike!",
+    "You deflect the enemy's blow!",
+    "You block the enemy's attack!",
+    "You parry the enemy's strike!",
+    "You dodge the enemy's attack! letting out a sly fart",
+    "You sidestep the enemy's blow!",
+    "You fend off the enemy's strike!",
+    "You repel the enemy's attack!",
+    "You withstand the enemy's blow!"
+    ]
+    }
