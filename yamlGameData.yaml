@@ -1,0 +1,46 @@
+game:
+  title: The dark kitchen of death
+  author: Taylor Swift
+  description: A thrilling adventure in a mysterious world.
+  release_date: 2023-03-02
+
+player:
+  name: Emily Dong
+  start_location: The Doorway
+  player_location: The Doorway
+  health: 100
+
+rooms:
+  - name: The Doorway
+    description: Hungry and desprate to find cake, you stumble into a hall with door. The door is locked and you can here weird sratching and growling noises.
+    enemy: "Bulbasaur"
+    exits:
+      north: The Great Hall
+      south: The Front Door
+    
+
+
+  - name: The Great Hall
+    description: A grand hall with a high ceiling and ornate furnishings.
+    exits:
+      south: The Doorway
+      east: The Dining Room
+
+objects:
+  - name: Key
+    description: A small, rusty key.
+    location: The Foyer
+
+
+enemies:
+  - name: "Bulbasaur"
+    hit_points: 10
+    enemy_location: "The Doorway"
+    attack_phrases:
+      - "The Bulbasaur lunges forward with its weapon."
+      - "The Bulbasaur growls and attacks you."
+      - "The Bulbasaur swings its weapon wildly at you."
+    defend_phrases:
+      - "The Bulbasaur raises its shield to protect itself."
+      - "The Bulbasaur ducks and weaves to avoid your attack."
+      - "The Bulbasaur jumps back to create some distance."
