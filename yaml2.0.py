@@ -1,109 +1,98 @@
 import yaml
 import random
-import time
 
-# Load the game data from the YAML file
-with open("yamlGameData.yaml", "r") as file:
-    game_data = yaml.safe_load(file)
 
-# Keep track of the player's gold coins
-gold_coins = 0
+# Load game data from YAML file
+with open("yamlGameData.yaml") as file:
+    game_data = yaml.load(file, Loader=yaml.FullLoader)
 
-# Keep track of the player's name
-player_name = "John"
+# Extract data from game_data
+rooms = game_data["rooms"]
+player = game_data["player"]
+enemies = game_data["enemies"]
 
-# Keep track of the player's hit points
-player_hit_points = game_data["player"]["health"]
+# Initialize player's location and health
+player_location = player["start_location"]
+player_health = player["health"]
 
-# Keep track of the player's location
-player_location = game_data["player"]["start_location"]
 
-# set the battle_over flag to False
-battle_over = False
+def call_room():
+    global player_location
+    global player_health
 
-# Start the game loop
-while not battle_over:
-    # Get the current location information
-    # Iterate through the list of rooms and find the dictionary that matches the current room name
-    for room in game_data["rooms"]:
-        if room["name"] == player_location:
-            location = room
-            break
-    print(f"You are at the {location['name']}")
-    print(location['description'])
-    print(f"You have {player_hit_points} hit points.")
+    # Find the current room
+    current_room = next(room for room in rooms if room["name"] == player_location)
 
-    # Check if there is an enemy at the current location
-    if "enemy" in location:
-        enemy = location["enemy"]
-        print(f"A {enemy} appeared!")
+    # Print the room description
+    print(current_room["description"])
 
-    # If there is an enemy, start a battle
-    for e in game_data["enemies"]: # loop through the list of enemies
-        if e["name"] == enemy: #
-            enemy_hit_points = e["hit_points"] # assign the enemy to the enemy variable
-            break # break out of the loop        
-        print(f"It has {enemy_hit_points} hit points.")
-        time.sleep(1)
+    # Check if there is an enemy in the room
+    if current_room["enemy"]:
+        engage_in_fight(current_room)
 
-        while enemy_hit_points > 0:
-            # Player attacks
-            damage = random.randint(1, 10)
-            enemy_hit_points -= damage
-            attack_phrase = random.choice(game_data["phrases"]["attack_phrases"])
-            print(f"\n{attack_phrase} You hit the {enemy} for {damage} damage.")
-            time.sleep(2)
+    # Check if there is an object in the room
+    if "object" in current_room:
+        take_object(current_room["object"])
 
-            # Check if the enemy is defeated
-            if enemy_hit_points <= 0:
-                print(f"You defeated the {enemy}!")
-                battle_over = True
-                break
+    # Get the available exits from the current room
+    exits = current_room["exits"]
 
-            # Enemy attacks
-            damage = random.randint(1, 10)
-            player_hit_points -= damage
-            defend_phrase = random.choice(game_data["phrases"]["defend_phrases"])
-            print(f"{defend_phrase}. {enemy} hit you for {damage} damage.")
-            time.sleep(2)
+    # Choose the player's next move
+    choose_next_move(exits)
 
-            # Check if the player is defeated
-            if player_hit_points <= 0:
-                print("You have been defeated!")
-                time.sleep(3)
-                battle_over = True
-                break
 
-    # Update the game data to reflect the current situation
-    game_data["rooms"][player_location]["enemy"] = None
+def engage_in_fight(room):
+    global player_health
 
-    # Get the available exits from the current location
-    exits = location["exits"]
+    # Get the enemy data
+    enemy_data = next(enemy for enemy in enemies if enemy["name"] == room["enemy"])
 
-    # Print the available exits
-    print("Exits:")
-    for direction, room in exits.items():
-        print(f"{direction.capitalize()}: {game_data['rooms'][room]['name']}")
+    # Print the enemy's attack phrase
+    print(random.choice(enemy_data["attack_phrases"]))
 
-    # Ask the player for their next move
+    # Reduce player's health
+    player_health -= enemy_data["hit_points"]
+
+    # Print player's remaining health
+    print(f"Your health is now {player_health}.")
+
+    # Check if the player is dead
+    if player_health <= 0:
+        game_over()
+
+    # Print the enemy's defense phrase
+    print(random.choice(enemy_data["defend_phrases"]))
+
+
+def choose_next_move(exits):
     while True:
-        next_move = input("What do you want to do? ").lower()
-        if next_move in exits:
-            player_location = game_data["rooms"].index(game_data["rooms"][player_location]["exits"][next_move])
+        # Print available exits
+        print("Available exits:")
+        for exit in exits:
+            print(f"{exit['direction']}: {exit['destination']}")
+
+        # Get player's input
+        next_move = input("What is your next move? ")
+
+        # Check if the input is valid
+        if next_move in [exit["direction"] for exit in exits]:
+            # Move the player to the next room
+            global player_location
+            player_location = next(exit["destination"] for exit in exits if exit["direction"] == next_move)
+            call_room()
             break
         else:
-            print("You can't do that.")
-
-    # Check if the player has reached the end of the game
-   
+            print("Invalid input. Please try again.")
 
 
-    # Check if the player has reached the end of the game
-    if player_location == game_data["player"]["end_location"]:
-        print("You have reached the end of the game!")
-        break
+def take_object(object_name):
+    print(f"You have picked up the {object_name}.")
+    # TODO: Implement functionality to add object to player's inventory
 
-    # Wait for user input before proceeding to the next iteration of the loop
-    input("Press Enter to continue...")
 
-print("Game Over")
+def game_over():
+    print("Game over.")
+
+
+# Start the game
+call_room()

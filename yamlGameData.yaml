@@ -10,28 +10,6 @@ player:
   player_location: The Doorway
   health: 100
 
-rooms:
-  - name: The Doorway
-    description: Hungry and desprate to find cake, you stumble into a hall with door. The door is locked and you can here weird sratching and growling noises.
-    enemy: "Bulbasaur"
-    exits:
-      north: The Great Hall
-      south: The Front Door
-    
-
-
-  - name: The Great Hall
-    description: A grand hall with a high ceiling and ornate furnishings.
-    exits:
-      south: The Doorway
-      east: The Dining Room
-
-objects:
-  - name: Key
-    description: A small, rusty key.
-    location: The Foyer
-
-
 enemies:
   - name: "Bulbasaur"
     hit_points: 10
@@ -44,3 +22,25 @@ enemies:
       - "The Bulbasaur raises its shield to protect itself."
       - "The Bulbasaur ducks and weaves to avoid your attack."
       - "The Bulbasaur jumps back to create some distance."
+
+rooms:
+  - name: "The Doorway"
+    description: "You are standing in a dark doorway. There is a hallway leading to the east."
+    exits:
+      - direction: "east"
+        destination: "The Hallway"
+    enemy: null  # Initialize enemy as None
+  - name: "The Hallway"
+    description: "You are standing in a dimly lit hallway. There is a doorway to the west and a staircase leading down."
+    exits:
+      - direction: "west"
+        destination: "The Doorway"
+      - direction: "down"
+        destination: "The Basement"
+    enemy: null  # Initialize enemy as None
+  - name: "The Basement"
+    description: "You are standing in a dark and damp basement. There is a staircase leading up."
+    exits:
+      - direction: "up"
+        destination: "The Hallway"
+    enemy: null  # Initialize enemy as None

@@ -36,6 +36,8 @@ while not battle_over:
     location = game_data["locations"][player_location]
     print(f"You are at the {location['description']}")
     print(f"if there's an enemy, you'll fight it. you have {player_hit_points} hit points.")
+
+    enemy_hit_points = None
     
     # Check if there is an enemy at the current location
     enemy = False
