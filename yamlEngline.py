@@ -85,6 +85,7 @@ def choose_next_move(exits):
             print("Invalid input. Please try again.")
 
 
+
 def take_object(object_name):
     print(f"You have picked up the {object_name}.")
     # TODO: Implement functionality to add object to player's inventory
@@ -94,5 +95,7 @@ def game_over():
     print("Game over.")
 
 
-# Start the game
-call_room()
+if __name__ == '__main__':
+    # Call your main function to start the game
+    call_room()
+    input("Press enter to exit...")
